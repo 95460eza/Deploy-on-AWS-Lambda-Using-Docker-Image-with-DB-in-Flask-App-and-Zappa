@@ -1,3 +1,4 @@
+import logging
 import os
 from flask import Flask
 from flask import render_template
@@ -10,6 +11,10 @@ import requests
 from PIL import Image
 from io import BytesIO
 import base64
+
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 
 
 # WEB API setup
@@ -137,4 +142,16 @@ app_ctx.pop()
 # Always LAST statements of the file
 # Zappa requires the handler function to be named `lambda_handler`
 def lambda_handler(event, context):
-    return flask_web_app(event, context)
+
+    try:
+        
+        logging.info("Lambda Event: %s", event)
+        response = flask_web_app(event, context)
+        return response
+
+    except Exception as e:
+
+        # Log the exception
+        logging.info("Lambda Event: %s", event)
+        logging.error("An error HAS occurred: %s", event)
+        logging.error("An error HAS occurred: %s", str(e))

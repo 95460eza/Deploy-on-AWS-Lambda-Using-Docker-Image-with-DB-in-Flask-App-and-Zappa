@@ -1,5 +1,5 @@
 
-from Flask-SQLAlchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 #import logging as lg
 
 

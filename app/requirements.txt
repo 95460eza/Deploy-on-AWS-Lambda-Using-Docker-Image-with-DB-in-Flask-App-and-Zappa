@@ -10,6 +10,6 @@ pillow
 
 # For models.py
 
-flask_sqlalchemy
+Flask-SQLAlchemy
 
 
