@@ -42,8 +42,9 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_web_app.db
 IMAGE_FOLDER = "./images"
 
 CONFIG_FILE = os.path.join(basedir, 'config')
-# print("Config. file:", CONFIG_FILE)
-flask_web_app.config.from_object(CONFIG_FILE)
+print("Config. file:", CONFIG_FILE)
+flask_web_app.config.from_object(.CONFIG_FILE)
+#flask_web_app.config.from_object(".")
 #flask_web_app.config[](CONFIG_FILE)
 
 # Here we "ASSOCIATE" our API with the SQLAlchemy Connection Object
