@@ -15,15 +15,15 @@ import base64
 
 print("sys.path:", sys.path)
 
-file_path = '/var/task/app'
+# file_path = '/var/task/app'
 # Check if the file exists
-if os.path.exists(file_path):
-    with open(file_path, 'r') as file:
-        file_content = file.read()
-        logging.info("Content of '/var/task/app': %s", file_content)
-        print("Content of '/var/task/app':", file_content)
-else:
-    logging.warning("File '/var/task/app' does not exist.")
+# if os.path.exists(file_path):
+#     with open(file_path, 'r') as file:
+#         file_content = file.read()
+#         logging.info("Content of '/var/task/app': %s", file_content)
+#         print("Content of '/var/task/app':", file_content)
+# else:
+#     logging.warning("File '/var/task/app' does not exist.")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -36,6 +36,7 @@ flask_web_app.config["DEBUG"] = True
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 CONFIG_FILE = os.path.join(basedir, 'config.py')
+print("Config. file:", CONFIG_FILE)
 flask_web_app.config.from_object(CONFIG_FILE)
 #flask_web_app.config.from_object('config')
 
