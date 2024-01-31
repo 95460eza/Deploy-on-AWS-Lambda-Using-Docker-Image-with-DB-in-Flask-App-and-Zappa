@@ -35,10 +35,13 @@ flask_web_app = Flask(__name__, static_folder="./static")
 flask_web_app.config["DEBUG"] = True
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+files = os.listdir(basedir)
+print("Files in basedir:", files)
+
 CONFIG_FILE = os.path.join(basedir, 'config.py')
 print("Config. file:", CONFIG_FILE)
-flask_web_app.config.from_object(CONFIG_FILE)
 #flask_web_app.config.from_object('config')
+flask_web_app.config.from_object('CONFIG_FILE')
 
 # Here we "ASSOCIATE" our API with the SQLAlchemy Connection Object
 db.init_app(flask_web_app)
