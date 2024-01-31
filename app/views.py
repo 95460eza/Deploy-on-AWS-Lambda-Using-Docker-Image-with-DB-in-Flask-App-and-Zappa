@@ -150,7 +150,17 @@ app_ctx.pop()
 def lambda_handler(event, context):
 
     try:
-        
+
+        file_path = '/var/task/app'
+
+        # Check if the file exists
+        if os.path.exists(file_path):
+            with open(file_path, 'r') as file:
+                file_content = file.read()
+                logging.info("Content of '/var/task/app': %s", file_content)
+        else:
+            logging.warning("File '/var/task/app' does not exist.")
+
         logging.info("Lambda Event: %s", event)
         response = flask_web_app(event, context)
         return response
