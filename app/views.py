@@ -4,7 +4,7 @@ from flask import Flask
 from flask import render_template
 #from flask import send_from_directory
 from .models import db, Table_datasetphotos_names
-import numpy as np
+#import numpy as np
 import json
 import pickle
 import requests
