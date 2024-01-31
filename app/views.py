@@ -38,10 +38,13 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 files = os.listdir(basedir)
 print("Files in basedir:", files)
 
-CONFIG_FILE = os.path.join(basedir, 'config.py')
-print("Config. file:", CONFIG_FILE)
-#flask_web_app.config.from_object(CONFIG_FILE)
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_web_app.db')
+IMAGE_FOLDER = "./images"
+
+ CONFIG_FILE = os.path.join(basedir, 'config')
+# print("Config. file:", CONFIG_FILE)
 flask_web_app.config.from_object(CONFIG_FILE)
+#flask_web_app.config[](CONFIG_FILE)
 
 # Here we "ASSOCIATE" our API with the SQLAlchemy Connection Object
 db.init_app(flask_web_app)
@@ -55,7 +58,6 @@ with app_ctx:
 
     db.drop_all()
     db.create_all()
-
     photo_names_list = os.listdir(flask_web_app.config['IMAGE_FOLDER'])
 
 
