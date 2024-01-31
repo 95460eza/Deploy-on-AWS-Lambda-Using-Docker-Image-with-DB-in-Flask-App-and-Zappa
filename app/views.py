@@ -15,6 +15,16 @@ import base64
 
 print("sys.path:", sys.path)
 
+file_path = '/var/task/app'
+# Check if the file exists
+if os.path.exists(file_path):
+    with open(file_path, 'r') as file:
+        file_content = file.read()
+        logging.info("Content of '/var/task/app': %s", file_content)
+        print("Content of '/var/task/app':", file_content)
+else:
+    logging.warning("File '/var/task/app' does not exist.")
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
@@ -43,7 +53,7 @@ with app_ctx:
     db.create_all()
 
     photo_names_list = os.listdir(flask_web_app.config['IMAGE_FOLDER'])
-    
+
 
     # Insert info into the TABLE named "Dataset_photos_names" of the empty of the empty "flask_web_app.db" database
     for selected_photo in photo_names_list:
@@ -150,16 +160,6 @@ app_ctx.pop()
 def lambda_handler(event, context):
 
     try:
-
-        file_path = '/var/task/app'
-
-        # Check if the file exists
-        if os.path.exists(file_path):
-            with open(file_path, 'r') as file:
-                file_content = file.read()
-                logging.info("Content of '/var/task/app': %s", file_content)
-        else:
-            logging.warning("File '/var/task/app' does not exist.")
 
         logging.info("Lambda Event: %s", event)
         response = flask_web_app(event, context)
