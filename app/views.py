@@ -38,7 +38,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 files = os.listdir(basedir)
 print("Files in basedir:", files)
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/' + 'flask_web_app.db')
+SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/' + 'flask_web_app.db'
 #SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_web_app.db')
 flask_web_app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 IMAGE_FOLDER = "./images"
