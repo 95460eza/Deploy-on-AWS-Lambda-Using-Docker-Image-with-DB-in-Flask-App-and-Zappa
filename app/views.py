@@ -41,7 +41,7 @@ print("Files in basedir:", files)
 CONFIG_FILE = os.path.join(basedir, 'config.py')
 print("Config. file:", CONFIG_FILE)
 #flask_web_app.config.from_object(CONFIG_FILE)
-flask_web_app.config.from_object('config.py')
+flask_web_app.config.from_object(CONFIG_FILE)
 
 # Here we "ASSOCIATE" our API with the SQLAlchemy Connection Object
 db.init_app(flask_web_app)
