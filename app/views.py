@@ -23,7 +23,11 @@ logging.basicConfig(level=logging.INFO)
 flask_web_app = Flask(__name__, static_folder="./static")
 #flask_web_app = Flask(__name__, static_folder="static")
 flask_web_app.config["DEBUG"] = True
-flask_web_app.config.from_object('__main__.config')
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+CONFIG_FILE = os.path.join(basedir, 'config.py')
+flask_web_app.config.from_object(CONFIG_FILE)
+#flask_web_app.config.from_object('config')
 
 # Here we "ASSOCIATE" our API with the SQLAlchemy Connection Object
 db.init_app(flask_web_app)
