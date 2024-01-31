@@ -1,4 +1,5 @@
 import logging
+import sys
 import os
 from flask import Flask
 from flask import render_template
@@ -12,6 +13,7 @@ import requests
 from io import BytesIO
 import base64
 
+print("sys.path:", sys.path)
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

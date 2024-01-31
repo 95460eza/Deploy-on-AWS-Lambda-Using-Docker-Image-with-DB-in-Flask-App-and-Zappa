@@ -6,6 +6,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_web_app.db')
 
+
 #IMAGE_FOLDER = ".//keras_prediction_via_web_app//static"
 IMAGE_FOLDER = "./images"
 
