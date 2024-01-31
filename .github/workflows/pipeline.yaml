@@ -73,6 +73,7 @@ jobs:
           pip install --upgrade pip
           pip install flask
           pip install Flask-SQLAlchemy
+          pip install pillow
           pip install zappa
           zappa deploy dev
           #zappa deploy dev && zappa tail dev
