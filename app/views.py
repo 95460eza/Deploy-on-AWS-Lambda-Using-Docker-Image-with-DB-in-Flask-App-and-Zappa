@@ -43,7 +43,7 @@ IMAGE_FOLDER = "./images"
 
 CONFIG_FILE = os.path.join(basedir, 'config')
 print("Config. file:", CONFIG_FILE)
-flask_web_app.config.from_object(.CONFIG_FILE)
+#flask_web_app.config.from_object(CONFIG_FILE)
 #flask_web_app.config.from_object(".")
 #flask_web_app.config[](CONFIG_FILE)
 
