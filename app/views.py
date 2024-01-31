@@ -9,46 +9,46 @@ from .models import db, Table_datasetphotos_names
 import json
 import pickle
 import requests
-#from PIL import Image
+from PIL import Image
 from io import BytesIO
 import base64
 
-print("sys.path:", sys.path)
-
-# file_path = '/var/task/app'
-# Check if the file exists
-# if os.path.exists(file_path):
-#     with open(file_path, 'r') as file:
-#         file_content = file.read()
-#         logging.info("Content of '/var/task/app': %s", file_content)
-#         print("Content of '/var/task/app':", file_content)
-# else:
-#     logging.warning("File '/var/task/app' does not exist.")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
 
-# WEB API setup
-flask_web_app = Flask(__name__, static_folder="./static")
+print("sys.path:", sys.path)
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+print("basedir:", basedir)
+
+files = os.listdir(basedir)
+print("NON-EMPTY Files and FOLDRS in basedir:", files)
+
+
+# Flask web API setup
+STATIC_FOLDER = os.path.join(basedir, 'static')
+flask_web_app = Flask(__name__, static_folder= STATIC_FOLDER)
+#flask_web_app = Flask(__name__, static_folder="./static")
 #flask_web_app = Flask(__name__, static_folder="static")
 flask_web_app.config["DEBUG"] = True
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-files = os.listdir(basedir)
-print("Files in basedir:", files)
 
+
+# USe "tmp" because in AWS Lambda: "basedir" is "READ-ONLY"!!!!
 SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/' + 'flask_web_app.db'
 #SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_web_app.db')
 flask_web_app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+
 IMAGE_FOLDER = os.path.join(basedir, 'images')
 flask_web_app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
 
-CONFIG_FILE = os.path.join(basedir, 'config')
-print("Config. file:", CONFIG_FILE)
+#CONFIG_FILE = os.path.join(basedir, 'config')
+#CONFIG_FILE = os.path.join(basedir, 'config.py')
+#print("Config. file:", CONFIG_FILE)
 #flask_web_app.config.from_object(CONFIG_FILE)
-#flask_web_app.config.from_object(".")
-#flask_web_app.config[](CONFIG_FILE)
+
 
 # Here we "ASSOCIATE" our API with the SQLAlchemy Connection Object
 db.init_app(flask_web_app)
